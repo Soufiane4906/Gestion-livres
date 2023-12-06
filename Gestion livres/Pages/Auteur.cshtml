@@ -1,0 +1,36 @@
+﻿@page
+@model Gestion_livres.Pages.AuteurModel
+@{
+}
+<br>
+<h2> liste des Auteurs</h2>
+<a class='btn btn-primary btn-sm' href='/Create'> Nouveau client</a>
+<br />
+<hr />
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nom Auteur </th>
+            <th>Email Auteur </th>
+            <th>Télephone Auteur </th>
+            <th>Adresse Auteur </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.listAuteur)
+        {
+            <tr>
+                <td>@item.idAuteur</td>
+                <td>@item.nomAuteur</td>
+                <td>@item.emailAuteur</td>
+                <td>@item.telephoneAuteur</td>
+                <td>@item.adresseAuteur</td>
+                <td>
+                    <a class='btn btn-primary btn-sm' href='/Editer?id=@item.idAuteur'> Editer </a>
+                    <a class='btn btn-danger btn-sm' href='/Delete?id=@item.idAuteur'> Supprimer</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

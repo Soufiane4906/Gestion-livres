@@ -1,0 +1,46 @@
+﻿@page
+@model Gestion_livres.Pages.EditerModel
+@{
+}
+<br />
+<h2>Les informations de l'Auteur: </h2>
+<form method="post">
+    <input type="hidden" name="id" value="@Model.auteurinfo.idAuteur">
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Nom</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="nom"
+                   value="@Model.auteurinfo.nomAuteur">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Email</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="email"
+                   value="@Model.auteurinfo.emailAuteur">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Télephone</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="telephone"
+                   value="@Model.auteurinfo.telephoneAuteur">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Adresse</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="adress"
+                   value="@Model.auteurinfo.adresseAuteur">
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="offset-sm3 col-sm-3 d-grid">
+            <button type="submit" class="btn btn-primary"> Submit </button>
+        </div>
+        <div class="col-sm-3 d-grid">
+            <a class="btn btn-outline-primary" href="/" role="button">Cancel</a>
+        </div>
+    </div>
+</form>

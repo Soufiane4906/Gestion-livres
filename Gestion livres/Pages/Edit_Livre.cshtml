@@ -1,0 +1,67 @@
+﻿@page
+@model Gestion_livres.Pages.Edit_LivreModel
+@{
+}
+<br />
+<h2>Les informations de livre </h2>
+<form method="post">
+    <input type="hidden" name="id" value="@Model.livreinfo.idLivre">
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Titre</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="titre"
+                   value="@Model.livreinfo.titre">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Isbn</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="isbn"
+                   value="@Model.livreinfo.isbn">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Idediteur</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="idediteur"
+                   value="@Model.livreinfo.idEditeur">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Idauteur</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="idauteur"
+                   value="@Model.livreinfo.idAuteur">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Idcat</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="idcat"
+                   value="@Model.livreinfo.idCat">
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Description</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="description"
+                   value="@Model.livreinfo.descripLivre">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Année d'édition</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="annee"
+                   value="@Model.livreinfo.anneeEdition">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="offset-sm3 col-sm-3 d-grid">
+            <button type="submit" class="btn btn-primary"> Submit </button>
+        </div>
+        <div class="col-sm-3 d-grid">
+            <a class="btn btn-outline-primary" href="/" role="button">Cancel</a>
+        </div>
+    </div>
+</form>

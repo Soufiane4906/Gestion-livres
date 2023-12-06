@@ -1,0 +1,38 @@
+﻿@page
+@model Gestion_livres.Pages.EditeurModel
+@{
+}
+<br>
+<h2> liste des Editeurs</h2>
+<a class='btn btn-primary btn-sm' href='/Create_edit'> Nouveau Editeur</a>
+<br />
+<hr />
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nom Editeur </th>
+            <th>Description Editeur </th>
+            <th>Email Editeur </th>
+            <th>Télephonne Editeur </th>
+            <th> Adresse Editeur</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.listEditeur)
+        {
+        <tr>
+            <td>@item.idEditeur</td>
+            <td>@item.nomEditeur</td>
+            <td>@item.descriptionEditeur</td>
+            <td>@item.emailEditeur</td>
+            <td>@item.telephoneEditeur</td>
+            <td>@item.adresseEditeur</td>
+            <td>
+                <a class='btn btn-primary btn-sm' href='/Edit_Editeur?id=@item.idEditeur'> Editer </a>
+                <a class='btn btn-danger btn-sm' href='/Delete_edit?id=@item.idEditeur'> Supprimer</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

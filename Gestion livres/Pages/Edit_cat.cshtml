@@ -1,0 +1,31 @@
+﻿@page
+@model Gestion_livres.Pages.Edit_catModel
+@{
+}
+<br />
+<h2>Les informations de Catégorie </h2>
+<form method="post">
+    <input type="hidden" name="id" value="@Model.catinfo.idCat">
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Nom</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="nom"
+                   value="@Model.catinfo.nomCat">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Description</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="description"
+                   value="@Model.catinfo.descriptionCat">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="offset-sm3 col-sm-3 d-grid">
+            <button type="submit" class="btn btn-primary"> Submit </button>
+        </div>
+        <div class="col-sm-3 d-grid">
+            <a class="btn btn-outline-primary" href="/" role="button">Cancel</a>
+        </div>
+    </div>
+</form>

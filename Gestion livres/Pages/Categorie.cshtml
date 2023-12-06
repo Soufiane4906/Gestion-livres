@@ -1,0 +1,32 @@
+﻿@page
+@model Gestion_livres.Pages.CategorieModel
+@{
+}
+<br>
+<h2> liste des Catégories</h2>
+<a class='btn btn-primary btn-sm' href='/Create_cat'> Nouvelle Categorie</a>
+<br />
+<hr />
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nom Catégorie </th>
+            <th>Description Catégorie </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.listCategorie)
+        {
+            <tr>
+                <td>@item.idCat</td>
+                <td>@item.nomCat</td>
+                <td>@item.descriptionCat</td>
+                <td>
+                    <a class='btn btn-primary btn-sm' href='/Edit_cat?id=@item.idCat'> Editer </a>
+                    <a class='btn btn-danger btn-sm' href='/Delete_cat?id=@item.idCat'> Supprimer</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

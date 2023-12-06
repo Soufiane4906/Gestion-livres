@@ -1,0 +1,53 @@
+﻿@page
+@model Gestion_livres.Pages.Edit_EditeurModel
+@{
+}
+<br />
+<h2>Les informations de l'editeur </h2>
+<form method="post">
+    <input type="hidden" name="id" value="@Model.editeurinfo.idEditeur">
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Nom</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="nom"
+                   value="@Model.editeurinfo.nomEditeur">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Description</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="description"
+                   value="@Model.editeurinfo.descriptionEditeur">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Email</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="email"
+                   value="@Model.editeurinfo.emailEditeur">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Télephone</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="telephone"
+                   value="@Model.editeurinfo.telephoneEditeur">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Adresse</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="adresse"
+                   value="@Model.editeurinfo.adresseEditeur">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="offset-sm3 col-sm-3 d-grid">
+            <button type="submit" class="btn btn-primary"> Submit </button>
+        </div>
+        <div class="col-sm-3 d-grid">
+            <a class="btn btn-outline-primary" href="/" role="button">Cancel</a>
+        </div>
+    </div>
+</form>
+
