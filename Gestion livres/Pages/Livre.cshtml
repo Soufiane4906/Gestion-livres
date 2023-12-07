@@ -7,36 +7,37 @@
 <a class='btn btn-primary btn-sm' href='/Create_Livre'> Nouveau livre</a>
 <br />
 <hr />
-<table class="table">
+<table class=" table table-striped">
     <thead>
         <tr>
-            <th>ID</th>
-            <th>Titre </th>
-            <th>ISBN </th>
-            <th>Editeur </th>
-            <th>Auteur</th>
-            <th>Catégorie</th>
-            <th>Description </th>
-            <th>Anneé d'edition </th>
+            <th scope="col">ID</th>
+            <th scope="col">Titre </th>
+            <th scope="col">ISBN </th>
+            <th scope="col">Editeur </th>
+            <th scope="col">Auteur</th>
+            <th scope="col">Catégorie</th>
+            <th scope="col">Description </th>
+            <th scope="col">Anneé d'edition </th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model.listLivre)
         {
-        <tr>
-            <td>@item.idLivre</td>
-            <td>@item.titre</td>
-            <td>@item.isbn</td>
-            <td>@item.idEditeur</td>
-            <td>@item.idAuteur</td>
-            <td>@item.idCat</td>
-            <td>@item.descripLivre</td>
-            <td>@item.anneeEdition</td>
-            <td>
-                <a class='btn btn-primary btn-sm' href='/Edit_livre?id=@item.idLivre'> Editer </a>
-                <a class='btn btn-danger btn-sm' href='/Delete_livre?id=@item.idLivre'> Supprimer</a>
-            </td>
-        </tr>
+            <tr>
+                <td>@item.IdLivre</td>
+                <td>@item.Titre</td>
+                <td>@item.Isbn</td>
+                <td>@item.NomEditeur</td>
+                <td>@item.NomAuteur</td>
+                <td>@item.NomCategorie</td>
+                <td>@item.DescripLivre</td>
+                <td>@item.AnneeEdition</td>
+                <td>
+                    <a class='btn btn-primary btn-sm' href='/Edit_livre?id=@item.IdLivre'> Editer </a>
+                    <a class='btn btn-danger btn-sm' href='/Delete_livre?id=@item.IdLivre'> Supprimer</a>
+                </td>
+            </tr>
         }
     </tbody>
+
 </table>

@@ -51,7 +51,7 @@ namespace Gestion_livres.Pages
 				cmd.Parameters.AddWithValue("@idCat", catinfo.idCat);
 				cmd.Parameters.AddWithValue("@nomCat", catinfo.nomCat);
 				cmd.Parameters.AddWithValue("@descriptionCat", catinfo.descriptionCat);
-				cmd.ExecuteNonQuery();
+					cmd.ExecuteNonQuery();con.Close();
 				con.Close();
 
 			}

@@ -36,7 +36,7 @@ namespace Gestion_livres.Pages
 				// cmd.Parameters.AddWithValue("@id",clientInfo.id);
 				cmd.Parameters.AddWithValue("@nomCat", catInfo.nomCat);
 				cmd.Parameters.AddWithValue("@descriptionCat", catInfo.descriptionCat);
-				cmd.ExecuteNonQuery();
+					cmd.ExecuteNonQuery();con.Close();
 				SuccessMessage = "Catégorie ajoutée avec succès";
 			
 			}

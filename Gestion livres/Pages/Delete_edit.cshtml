@@ -11,7 +11,7 @@
         string sql = "delete from Editeur where idEditeur = @id";
         SqlCommand cmd = new SqlCommand(sql, con);
         cmd.Parameters.AddWithValue("@id", id);
-        cmd.ExecuteNonQuery();
+        	cmd.ExecuteNonQuery();con.Close();
         con.Close();
     }
     catch (Exception ex)

@@ -57,7 +57,7 @@ namespace Gestion_livres.Pages
 				cmd.Parameters.AddWithValue("@emailAuteur", auteurinfo.emailAuteur);
 				cmd.Parameters.AddWithValue("@telephoneAuteur", auteurinfo.telephoneAuteur);
 				cmd.Parameters.AddWithValue("@adresseAuteur", auteurinfo.adresseAuteur);
-				cmd.ExecuteNonQuery();
+					cmd.ExecuteNonQuery();con.Close();
 				con.Close();
 
 			}

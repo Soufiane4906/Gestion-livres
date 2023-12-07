@@ -133,7 +133,7 @@ namespace Gestion_livres.Pages
 						cmd.Parameters.AddWithValue("@descripLivre", livreInfo.descripLivre);
 						cmd.Parameters.AddWithValue("@anneeEdition", livreInfo.anneeEdition);
 
-						cmd.ExecuteNonQuery();
+							cmd.ExecuteNonQuery();con.Close();
 					}
 				}
 

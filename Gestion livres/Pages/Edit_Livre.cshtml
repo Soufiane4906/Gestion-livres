@@ -21,14 +21,14 @@
         </div>
     </div>
     <div class="row mb-3">
-        <label class="col-sm-3 col-form-label">Idediteur</label>
+        <label class="col-sm-3 col-form-label">Editeur</label>
         <div class="col-sm-6">
          
 
             <select class="form-control" name="idediteur">
                 @foreach (var edi in Model.listEditeur)
                 {
-                    if (edi.idEditeur == Model.livreinfo.idAuteur)
+                    if (edi.idEditeur == Model.livreinfo.idEditeur)
                     {
                         <option value="@edi.idEditeur" selected>@edi.nomEditeur</option>
                     }
@@ -42,7 +42,7 @@
         </div>
     </div>
     <div class="row mb-3">
-        <label class="col-sm-3 col-form-label">Idauteur</label>
+        <label class="col-sm-3 col-form-label">Auteur</label>
         <div class="col-sm-6">
   @*          <input type="text" class="form-control" name="idauteur"
                    value="@Model.livreinfo.idAuteur">*@
@@ -63,7 +63,7 @@
         </div>
     </div>
     <div class="row mb-3">
-        <label class="col-sm-3 col-form-label">Idcat</label>
+        <label class="col-sm-3 col-form-label">Categorie</label>
         <div class="col-sm-6">
             <select class="form-control" name="idcat">
                 @foreach (var cat in Model.listCategorie)

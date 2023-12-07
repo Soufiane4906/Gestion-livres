@@ -145,7 +145,7 @@ namespace Gestion_livres.Pages
 				cmd.Parameters.AddWithValue("@idcat", livreinfo.idCat);
 				cmd.Parameters.AddWithValue("@descriplivre", livreinfo.descripLivre);
 				cmd.Parameters.AddWithValue("@anneedition", livreinfo.anneeEdition);
-				cmd.ExecuteNonQuery();
+					cmd.ExecuteNonQuery();con.Close();
 				con.Close();
 
 			}

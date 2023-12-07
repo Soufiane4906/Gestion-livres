@@ -4,7 +4,31 @@
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<style>
+    body {
+        background-image: url('~/img/livres-e-commerce.png');
+        background-size: cover; /* This will cover the entire background */
+        background-position: center; /* This centers the image */
+        background-repeat: no-repeat; /* This prevents the image from repeating */
+    }
+
+    /* You can add additional styling for your content here */
+    .content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh; /* Set the height to 100% of the viewport height */
+        color: white; /* Set text color to white or a contrasting color */
+    }
+
+    /* Style for the logo image */
+    .navbar-brand-img {
+        width: 100px; /* Adjust the width as needed */
+        height: auto; /* Maintain the aspect ratio */
+    }
+</style>
+
+<div class="content">
+    <!-- Your page content goes here -->
+    <h1>Welcome to the Home Page</h1>
 </div>

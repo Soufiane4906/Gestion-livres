@@ -40,7 +40,7 @@ namespace Gestion_livres.Pages
 				cmd.Parameters.AddWithValue("@emailAuteur", auteurInfo.emailAuteur);
 				cmd.Parameters.AddWithValue("@telephoneAuteur", auteurInfo.telephoneAuteur);
 				cmd.Parameters.AddWithValue("@adresseAuteur", auteurInfo.adresseAuteur);
-				cmd.ExecuteNonQuery();
+					cmd.ExecuteNonQuery();con.Close();
 				SuccessMessage = "Auteur ajoutée avec succès";
 
 			}
