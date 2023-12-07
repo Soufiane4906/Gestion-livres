@@ -23,24 +23,64 @@
     <div class="row mb-3">
         <label class="col-sm-3 col-form-label">Idediteur</label>
         <div class="col-sm-6">
-            <input type="text" class="form-control" name="idediteur"
-                   value="@Model.livreinfo.idEditeur">
+         
+
+            <select class="form-control" name="idediteur">
+                @foreach (var edi in Model.listEditeur)
+                {
+                    if (edi.idEditeur == Model.livreinfo.idAuteur)
+                    {
+                        <option value="@edi.idEditeur" selected>@edi.nomEditeur</option>
+                    }
+                    else
+                    {
+                        <option value="@edi.idEditeur">@edi.nomEditeur</option>
+                    }
+                }
+            </select>
+
         </div>
     </div>
     <div class="row mb-3">
         <label class="col-sm-3 col-form-label">Idauteur</label>
         <div class="col-sm-6">
-            <input type="text" class="form-control" name="idauteur"
-                   value="@Model.livreinfo.idAuteur">
+  @*          <input type="text" class="form-control" name="idauteur"
+                   value="@Model.livreinfo.idAuteur">*@
+
+            <select class="form-control" name="idauteur">
+                @foreach (var aut in Model.listAuteur)
+                {
+                    if (aut.idAuteur == Model.livreinfo.idAuteur)
+                    {
+                        <option value="@aut.idAuteur" selected>@aut.nomAuteur</option>
+                    }
+                    else
+                    {
+                        <option value="@aut.idAuteur">@aut.nomAuteur</option>
+                    }
+                }
+            </select>
         </div>
     </div>
     <div class="row mb-3">
         <label class="col-sm-3 col-form-label">Idcat</label>
         <div class="col-sm-6">
-            <input type="text" class="form-control" name="idcat"
-                   value="@Model.livreinfo.idCat">
+            <select class="form-control" name="idcat">
+                @foreach (var cat in Model.listCategorie)
+                {
+                    if (cat.idCat == Model.livreinfo.idCat)
+                    {
+                        <option value="@cat.idCat" selected>@cat.nomCat</option>
+                    }
+                    else
+                    {
+                        <option value="@cat.idCat">@cat.nomCat</option>
+                    }
+                }
+            </select>
         </div>
     </div>
+
 
     <div class="row mb-3">
         <label class="col-sm-3 col-form-label">Description</label>

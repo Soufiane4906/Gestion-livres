@@ -16,8 +16,37 @@ namespace Gestion_livres.Pages
 		public string SuccessMessage = "";
 
         public List<AuteurInfo> listAuteur = new List<AuteurInfo>();
+        public List<CatInfo> listCategorie = new List<CatInfo>();
+        		public List<EditeurInfo> listEditeur = new List<EditeurInfo>();
+
+
         public void OnGet()
 		{
+            try
+            {
+                string connectionString = @"Data Source=DESKTOP-V8TA7E5;Initial Catalog = gestion_livre; Integrated Security = True";
+                SqlConnection con = new SqlConnection(connectionString);
+                con.Open();
+                string sql = "select * from Editeur";
+                SqlCommand cmd = new SqlCommand(sql, con);
+                SqlDataReader rd = cmd.ExecuteReader();
+
+                while (rd.Read())
+                {
+                    EditeurInfo editeurinf = new EditeurInfo();
+                    editeurinf.idEditeur = rd.GetInt32(0);
+                    editeurinf.nomEditeur = rd.GetString(1);
+                    editeurinf.descriptionEditeur = rd.GetString(2);
+                    editeurinf.emailEditeur = rd.GetString(3);
+                    editeurinf.telephoneEditeur = rd.GetString(4);
+                    editeurinf.adresseEditeur = rd.GetString(5);
+                    listEditeur.Add(editeurinf);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Exception " + ex.ToString());
+            }
             try
             {
                 string connectionString = @"Data Source=DESKTOP-V8TA7E5;Initial Catalog = gestion_livre; Integrated Security = True";
@@ -42,13 +71,32 @@ namespace Gestion_livres.Pages
             {
                 Console.WriteLine("Exception " + ex.ToString());
             }
+            try
+            {
+                string connectionString = @"Data Source=DESKTOP-V8TA7E5;Initial Catalog = gestion_livre; Integrated Security = True";
+                SqlConnection con = new SqlConnection(connectionString);
+                con.Open();
+                string sql = "select * from Categorie";
+                SqlCommand cmd = new SqlCommand(sql, con);
+                SqlDataReader rd = cmd.ExecuteReader();
+
+                while (rd.Read())
+                {
+                    CatInfo catinf = new CatInfo();
+                    catinf.idCat = rd.GetInt32(0);
+                    catinf.nomCat = rd.GetString(1);
+                    catinf.descriptionCat = rd.GetString(2);
+                    listCategorie.Add(catinf);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Exception " + ex.ToString());
+            }
 
         }
 
-        private List<AuteurModel> GetAuthors()
-        {
-            throw new NotImplementedException();
-        }
+     
 
         public void OnPost()
 		{
@@ -58,7 +106,7 @@ namespace Gestion_livres.Pages
 			livreInfo.idAuteur = Convert.ToInt32(Request.Form["idauteur"]);
 			livreInfo.idCat = Convert.ToInt32(Request.Form["idcat"]);
 			livreInfo.descripLivre = Request.Form["description"];
-			livreInfo.anneeEdition = Convert.ToInt32(Request.Form["anne"]);
+			livreInfo.anneeEdition = Convert.ToInt32(Request.Form["annee"]);
 
 			if (string.IsNullOrEmpty(livreInfo.titre) || string.IsNullOrEmpty(livreInfo.isbn))
 			{

@@ -28,8 +28,13 @@
     <div class="row mb-3">
         <label class="col-sm-3 col-form-label">Idediteur</label>
         <div class="col-sm-6">
-            <input type="text" class="form-control" name="idediteur"
-                   value="@Model.livreInfo.idEditeur">
+            <select class="form-control" name="idediteur">
+                <option value="">Select an Editor</option>
+                @foreach (var edito in Model.listEditeur)
+                {
+                    <option value="@edito.idEditeur">@edito.nomEditeur</option>
+                }
+            </select>
         </div>
     </div>
     <div class="row mb-3">
@@ -49,8 +54,16 @@
     <div class="row mb-3">
         <label class="col-sm-3 col-form-label">Idcat</label>
         <div class="col-sm-6">
-            <input type="text" class="form-control" name="idcat"
-                   value="@Model.livreInfo.idCat">
+
+            <select class="form-control" name="idcat">
+                <option value="">Select Category</option>
+                @foreach (var cat in Model.listCategorie)
+                {
+                    <option value="@cat.idCat">@cat.nomCat</option>
+                }
+            </select>
+    @*        <input type="text" class="form-control" name="idcat"
+                   value="@Model.livreInfo.idCat">*@
         </div>
        
     </div>
@@ -64,7 +77,7 @@
     <div class="row mb-3">
         <label class="col-sm-3 col-form-label">Année D'édition</label>
         <div class="col-sm-6">
-            <input type="text" class="form-control" name="anne"
+            <input type="text" class="form-control" name="annee"
                    value="@Model.livreInfo.anneeEdition">
         </div>
     </div>
