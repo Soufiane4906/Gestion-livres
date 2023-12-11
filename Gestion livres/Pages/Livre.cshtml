@@ -3,12 +3,12 @@
 @{
 }
 <br>
-<h2> liste des Livres</h2>
+<h2> Liste des  Livres</h2>
 <a class='btn btn-primary btn-sm' href='/Create_Livre'> Nouveau livre</a>
 <br />
 <hr />
-<table class=" table table-striped">
-    <thead>
+<table class=" table table-striped table-hover table-bordered">
+    <thead class="thead-dark">
         <tr>
             <th scope="col">ID</th>
             <th scope="col">Titre </th>
@@ -18,6 +18,7 @@
             <th scope="col">Catégorie</th>
             <th scope="col">Description </th>
             <th scope="col">Anneé d'edition </th>
+            <th scope="col">Images </th>
         </tr>
     </thead>
     <tbody>
@@ -32,7 +33,13 @@
                 <td>@item.NomCategorie</td>
                 <td>@item.DescripLivre</td>
                 <td>@item.AnneeEdition</td>
-                <td>
+                <td> <img style="display:flex" src="~/@item.imagepath" alt="Image" width="100"
+                     height="100" > 
+                     </td>
+            
+               
+
+            <td>
                     <a class='btn btn-primary btn-sm' href='/Edit_livre?id=@item.IdLivre'> Editer </a>
                     <a class='btn btn-danger btn-sm' href='/Delete_livre?id=@item.IdLivre'> Supprimer</a>
                 </td>

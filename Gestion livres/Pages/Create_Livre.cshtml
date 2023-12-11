@@ -10,7 +10,7 @@
     <strong>@Model.errormessage</strong>
     <button type='button' class='btn_close' date-bs-dismiss='alert' arialabel='Close'></button>
 </div>}
-<form method="post">
+<form method="post" enctype="multipart/form-data">
     <div class="row mb-3">
         <label class="col-sm-3 col-form-label">Titre</label>
         <div class="col-sm-6">
@@ -79,6 +79,12 @@
         <div class="col-sm-6">
             <input type="text" class="form-control" name="annee"
                    value="@Model.livreInfo.anneeEdition">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Image</label>
+        <div class="col-sm-6">
+            <input type="file" class="form-control" name="ImageFile" value="@Model.livreInfo.imagepath">
         </div>
     </div>
     @if (Model.SuccessMessage.Length > 0)

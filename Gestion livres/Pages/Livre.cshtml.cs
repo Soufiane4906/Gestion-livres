@@ -35,11 +35,12 @@ namespace Gestion_livres.Pages
                         IdLivre = rd.GetInt32(0),
                         Titre = rd.GetString(1),
                         Isbn = rd.GetString(2),
-                        NomEditeur = rd.GetString(8),  // Indice de la colonne NomEditeur dans la requête SQL
+                        NomEditeur = rd.GetString(10),  // Indice de la colonne NomEditeur dans la requête SQL
                         NomAuteur = rd.GetString(9),   // Indice de la colonne NomAuteur dans la requête SQL
-                        NomCategorie = rd.GetString(10), // Indice de la colonne NomCategorie dans la requête SQL
+                        NomCategorie = rd.GetString(11), // Indice de la colonne NomCategorie dans la requête SQL
                         DescripLivre = rd.GetString(6),
-                        AnneeEdition = rd.GetInt32(7)
+                        AnneeEdition = rd.GetInt32(7),
+                        imagepath = rd.GetString(8)
                     };
 
                     listLivre.Add(livreViewModel);
@@ -63,6 +64,7 @@ namespace Gestion_livres.Pages
         public string NomCategorie { get; set; }
         public string DescripLivre { get; set; }
         public int AnneeEdition { get; set; }
+        public string imagepath { get; set; }
     }
     public class LivreInfo
 	{
@@ -74,9 +76,11 @@ namespace Gestion_livres.Pages
 		public int idEditeur;
 		public string descripLivre;
 		public int anneeEdition;
-		
+        public string imagepath;
 
 
-	}
+
+
+    }
 }
 

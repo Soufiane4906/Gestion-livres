@@ -5,15 +5,29 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Data.SqlClient;
+using Microsoft.AspNetCore.Http;
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
+
 
 namespace Gestion_livres.Pages
 {
 	public class Create_LivreModel : PageModel
 	{
+        private readonly IWebHostEnvironment _hostingEnvironment;
 
-		public LivreInfo livreInfo = new LivreInfo();
+        public Create_LivreModel(IWebHostEnvironment hostingEnvironment)
+        {
+            _hostingEnvironment = hostingEnvironment;
+        }
+
+
+
+        public LivreInfo livreInfo = new LivreInfo();
 		public string errormessage = "";
 		public string SuccessMessage = "";
+        [BindProperty]
+        public IFormFile ImageFile { get; set; }
 
         public List<AuteurInfo> listAuteur = new List<AuteurInfo>();
         public List<CatInfo> listCategorie = new List<CatInfo>();
@@ -98,7 +112,7 @@ namespace Gestion_livres.Pages
 
      
 
-        public void OnPost()
+        public async  void OnPost()
 		{
 			livreInfo.titre = Request.Form["titre"];
 			livreInfo.isbn = Request.Form["isbn"];
@@ -107,8 +121,9 @@ namespace Gestion_livres.Pages
 			livreInfo.idCat = Convert.ToInt32(Request.Form["idcat"]);
 			livreInfo.descripLivre = Request.Form["description"];
 			livreInfo.anneeEdition = Convert.ToInt32(Request.Form["annee"]);
+			livreInfo.anneeEdition = Convert.ToInt32(Request.Form["annee"]);
 
-			if (string.IsNullOrEmpty(livreInfo.titre) || string.IsNullOrEmpty(livreInfo.isbn))
+            if (string.IsNullOrEmpty(livreInfo.titre) || string.IsNullOrEmpty(livreInfo.isbn) || (livreInfo.idEditeur) == null || (livreInfo.idCat) == null || (livreInfo.idAuteur) == null || (livreInfo.anneeEdition) == null)
 			{
 				errormessage = "Le titre et l'ISBN sont obligatoires";
 				return;
@@ -121,9 +136,11 @@ namespace Gestion_livres.Pages
 				using (SqlConnection con = new SqlConnection(connectionString))
 				{
 					con.Open();
+                    string imagePath = SaveImage(ImageFile);
 
-					string sql = "insert into Livre(titre, isbn, idEditeur,idAuteur,idCat,descripLivre ,anneeEdition) values(@titre,@isbn, @idEditeur, @idAuteur,@idCat,@descripLivre,@anneeEdition)";
-					using (SqlCommand cmd = new SqlCommand(sql, con))
+
+                    string sql = "INSERT INTO Livre(titre, isbn, idEditeur, idAuteur, idCat, descripLivre, anneeEdition, imagepath) VALUES(@titre, @isbn, @idEditeur, @idAuteur, @idCat, @descripLivre, @anneeEdition, @imagepath)";
+                    using (SqlCommand cmd = new SqlCommand(sql, con))
 					{
 						cmd.Parameters.AddWithValue("@titre", livreInfo.titre);
 						cmd.Parameters.AddWithValue("@isbn", livreInfo.isbn);
@@ -132,8 +149,10 @@ namespace Gestion_livres.Pages
 						cmd.Parameters.AddWithValue("@idCat", livreInfo.idCat);
 						cmd.Parameters.AddWithValue("@descripLivre", livreInfo.descripLivre);
 						cmd.Parameters.AddWithValue("@anneeEdition", livreInfo.anneeEdition);
+                        cmd.Parameters.AddWithValue("@imagepath", imagePath);
 
-							cmd.ExecuteNonQuery();con.Close();
+                        await cmd.ExecuteNonQueryAsync();
+                        con.Close();
 					}
 				}
 
@@ -144,9 +163,33 @@ namespace Gestion_livres.Pages
 				// Utilisez un système de journalisation approprié ici
 				errormessage = "Une erreur s'est produite lors de l'ajout du livre. Veuillez réessayer.";
 			}
+            Response.Redirect("/Livre");
 
-		}
-	}
+
+
+
+        }
+
+        private string SaveImage(IFormFile imageFile)
+        {
+            if (imageFile == null || imageFile.Length == 0)
+            {
+                return null; // Handle the case where no image is provided
+            }
+
+            string wwwRootPath = _hostingEnvironment.WebRootPath;
+            string fileName = Guid.NewGuid().ToString() + Path.GetExtension(imageFile.FileName);
+            string filePath = Path.Combine(wwwRootPath, "images", fileName);
+
+            using (FileStream stream = new FileStream(filePath, FileMode.Create))
+            {
+                imageFile.CopyTo(stream);
+            }
+
+            return "images/" + fileName;
+        }
+    }
+
 }
 
 

@@ -52,7 +52,8 @@ namespace Gestion_livres.Pages
 
 
 
-		}
+            Response.Redirect("/Auteur");
+        }
 	}
 	
 }

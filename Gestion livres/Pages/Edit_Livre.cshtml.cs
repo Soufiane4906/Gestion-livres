@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Data.SqlClient;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using System.IO;
 
 namespace Gestion_livres.Pages
 {
@@ -12,10 +15,19 @@ namespace Gestion_livres.Pages
     {
 		public LivreInfo livreinfo = new LivreInfo();
         public List<CatInfo> listCategorie = new List<CatInfo>();
+        [BindProperty]
+        public IFormFile ImageFile { get; set; }
 
 
         public List<EditeurInfo> listEditeur = new List<EditeurInfo>();
         public List<AuteurInfo> listAuteur = new List<AuteurInfo>();
+
+        private readonly IWebHostEnvironment _hostingEnvironment;
+
+        public Edit_LivreModel(IWebHostEnvironment hostingEnvironment)
+        {
+            _hostingEnvironment = hostingEnvironment;
+        }
 
         public void OnGet()
 		{
@@ -41,8 +53,10 @@ namespace Gestion_livres.Pages
                     livreinfo.idCat = rd.GetInt32(5);
                     livreinfo.descripLivre = rd.GetString(6);
                     livreinfo.anneeEdition = rd.GetInt32(7);
+                    livreinfo.imagepath = rd.GetString(8);
+
                 }
-			}
+            }
 			catch (Exception ex)
 			{
 				Console.WriteLine("Exception " + ex.ToString());
@@ -130,22 +144,29 @@ namespace Gestion_livres.Pages
 			livreinfo.idCat = Convert.ToInt32(Request.Form["idcat"]);
 			livreinfo.descripLivre = Request.Form["description"];//anneedition
 			livreinfo.anneeEdition = Convert.ToInt32(Request.Form["annee"]);
+			livreinfo.imagepath = (Request.Form["ImageFile"]);
+
 			try
 			{
 				string connectionString = @"Data Source=DESKTOP-V8TA7E5;Initial Catalog = gestion_livre; Integrated Security = True";
 				SqlConnection con = new SqlConnection(connectionString);
 				con.Open();
+                string imagePath = SaveImage(ImageFile);
 
-				string sql = "update Livre set  titre = @titre,isbn = @isbn,idEditeur=@idediteur,idAuteur=@idauteur,idCat=@idcat,descripLivre=@descriplivre,anneeEdition=@anneedition where idLivre = @idlivre";
+
+                string sql = "update Livre set  titre = @titre,isbn = @isbn,idEditeur=@idediteur,idAuteur=@idauteur,idCat=@idcat,descripLivre=@descriplivre,anneeEdition=@anneedition , imagepath=@imagepath where idLivre = @idlivre";
 				SqlCommand cmd = new SqlCommand(sql, con);
 				cmd.Parameters.AddWithValue("@idlivre", livreinfo.idLivre);
 				cmd.Parameters.AddWithValue("@titre", livreinfo.titre);
+				cmd.Parameters.AddWithValue("@isbn", livreinfo.isbn);
 				cmd.Parameters.AddWithValue("@idediteur", livreinfo.idEditeur);
 				cmd.Parameters.AddWithValue("@idauteur", livreinfo.idAuteur);
 				cmd.Parameters.AddWithValue("@idcat", livreinfo.idCat);
 				cmd.Parameters.AddWithValue("@descriplivre", livreinfo.descripLivre);
 				cmd.Parameters.AddWithValue("@anneedition", livreinfo.anneeEdition);
-					cmd.ExecuteNonQuery();con.Close();
+                cmd.Parameters.AddWithValue("@imagepath", imagePath);
+
+                cmd.ExecuteNonQuery();con.Close();
 				con.Close();
 
 			}
@@ -155,6 +176,25 @@ namespace Gestion_livres.Pages
 			}
 			Response.Redirect("/Livre");
 		}
-	}
+        private string SaveImage(IFormFile imageFile)
+        {
+            if (imageFile == null || imageFile.Length == 0)
+            {
+                return null; // Handle the case where no image is provided
+            }
+
+            string wwwRootPath = _hostingEnvironment.WebRootPath;
+            string fileName = Guid.NewGuid().ToString() + Path.GetExtension(imageFile.FileName);
+            string filePath = Path.Combine(wwwRootPath, "images", fileName);
+
+            using (FileStream stream = new FileStream(filePath, FileMode.Create))
+            {
+                imageFile.CopyTo(stream);
+            }
+
+            return "images/" + fileName;
+        }
+
+    }
 }
 
