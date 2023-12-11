@@ -18,7 +18,7 @@ namespace Gestion_livres.Pages
             // connection vers la base de données
             try
             {
-                string connectionString = @"Data Source=DESKTOP-V8TA7E5;Initial Catalog = gestion_livre; Integrated Security = True";
+                string connectionString = @"Data Source=MERI\SQLEXPRESS;Initial Catalog = gestion_livre; Integrated Security = True";
                 SqlConnection con = new SqlConnection(connectionString);
                 con.Open();
                 string sql = "SELECT Livre.*, Auteur.nomAuteur, Editeur.nomEditeur, Categorie.nomCat " +

@@ -5,7 +5,7 @@
     try
     {
         int id = Convert.ToInt32(Request.Query["id"]);
-        string connectionString = @"Data Source=DESKTOP-V8TA7E5;Initial Catalog = gestion_livre; Integrated Security = True";
+        string connectionString = @"Data Source=MERI\SQLEXPRESS;Initial Catalog = gestion_livre; Integrated Security = True";
         SqlConnection con = new SqlConnection(connectionString);
         con.Open();
         string sql = "delete from Auteur where idAuteur = @id";

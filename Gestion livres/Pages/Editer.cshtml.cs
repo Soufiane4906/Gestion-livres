@@ -16,7 +16,7 @@ namespace Gestion_livres.Pages
 			string id = Request.Query["id"];
 			try
 			{
-				string connectionString = @"Data Source=DESKTOP-V8TA7E5;Initial Catalog = gestion_livre; Integrated Security = True";
+				string connectionString = @"Data Source=MERI\SQLEXPRESS;Initial Catalog = gestion_livre; Integrated Security = True";
 				SqlConnection con = new SqlConnection(connectionString);
 				con.Open();
 				string sql = "select * from Auteur where idAuteur=@id";
@@ -46,7 +46,7 @@ namespace Gestion_livres.Pages
 			auteurinfo.adresseAuteur = Request.Form["adress"];
 			try
 			{
-				string connectionString = @"Data Source=DESKTOP-V8TA7E5;Initial Catalog = gestion_livre; Integrated Security = True";
+				string connectionString = @"Data Source=MERI\SQLEXPRESS;Initial Catalog = gestion_livre; Integrated Security = True";
 				SqlConnection con = new SqlConnection(connectionString);
 				con.Open();
 

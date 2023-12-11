@@ -33,7 +33,7 @@ namespace Gestion_livres.Pages
 
 			try
 			{
-				string connectionString = @"Data Source=DESKTOP-V8TA7E5;Initial Catalog = gestion_livre; Integrated Security = True";
+				string connectionString = @"Data Source=MERI\SQLEXPRESS;Initial Catalog = gestion_livre; Integrated Security = True";
 				SqlConnection con = new SqlConnection(connectionString);
 				con.Open();
 				string sql = "insert into Editeur(nomEditeur,descriptionEditeur,emailEditeur,telephoneEditeur,adresseEditeur) values(@nomEditeur,@descriptionEditeur, @emailEditeur, @telephoneEditeur, @adresseEditeur)";

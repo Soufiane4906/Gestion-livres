@@ -16,7 +16,7 @@ namespace Gestion_livres.Pages
 			string id = Request.Query["id"];
 			try
 			{
-				string connectionString = @"Data Source=DESKTOP-V8TA7E5;Initial Catalog = gestion_livre; Integrated Security = True";
+				string connectionString = @"Data Source=MERI\SQLEXPRESS;Initial Catalog = gestion_livre; Integrated Security = True";
 				SqlConnection con = new SqlConnection(connectionString);
 				con.Open();
 				string sql = "select * from Categorie where idCat=@id";
@@ -42,7 +42,7 @@ namespace Gestion_livres.Pages
 			catinfo.descriptionCat = Request.Form["description"];
 			try
 			{
-				string connectionString = @"Data Source=DESKTOP-V8TA7E5;Initial Catalog = gestion_livre; Integrated Security = True";
+				string connectionString = @"Data Source=MERI\SQLEXPRESS;Initial Catalog = gestion_livre; Integrated Security = True";
 				SqlConnection con = new SqlConnection(connectionString);
 				con.Open();
 

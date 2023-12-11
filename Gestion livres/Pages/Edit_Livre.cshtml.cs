@@ -36,7 +36,7 @@ namespace Gestion_livres.Pages
 			string id = Request.Query["id"];
 			try
 			{
-				string connectionString = @"Data Source=DESKTOP-V8TA7E5;Initial Catalog = gestion_livre; Integrated Security = True";
+				string connectionString = @"Data Source=MERI\SQLEXPRESS;Initial Catalog = gestion_livre; Integrated Security = True";
 				SqlConnection con = new SqlConnection(connectionString);
 				con.Open();
 				string sql = "select * from Livre where idLivre=@id";
@@ -63,7 +63,7 @@ namespace Gestion_livres.Pages
 			}
             try
             {
-                string connectionString = @"Data Source=DESKTOP-V8TA7E5;Initial Catalog = gestion_livre; Integrated Security = True";
+                string connectionString = @"Data Source=MERI\SQLEXPRESS;Initial Catalog = gestion_livre; Integrated Security = True";
                 SqlConnection con = new SqlConnection(connectionString);
                 con.Open();
                 string sql = "select * from Categorie";
@@ -86,7 +86,7 @@ namespace Gestion_livres.Pages
             }
             try
             {
-                string connectionString = @"Data Source=DESKTOP-V8TA7E5;Initial Catalog = gestion_livre; Integrated Security = True";
+                string connectionString = @"Data Source=MERI\SQLEXPRESS;Initial Catalog = gestion_livre; Integrated Security = True";
                 SqlConnection con = new SqlConnection(connectionString);
                 con.Open();
                 string sql = "select * from Editeur";
@@ -111,7 +111,7 @@ namespace Gestion_livres.Pages
             }
             try
             {
-                string connectionString = @"Data Source=DESKTOP-V8TA7E5;Initial Catalog = gestion_livre; Integrated Security = True";
+                string connectionString = @"Data Source=MERI\SQLEXPRESS;Initial Catalog = gestion_livre; Integrated Security = True";
                 SqlConnection con = new SqlConnection(connectionString);
                 con.Open();
                 string sql = "select * from Auteur";
@@ -148,7 +148,7 @@ namespace Gestion_livres.Pages
 
 			try
 			{
-				string connectionString = @"Data Source=DESKTOP-V8TA7E5;Initial Catalog = gestion_livre; Integrated Security = True";
+				string connectionString = @"Data Source=MERI\SQLEXPRESS;Initial Catalog = gestion_livre; Integrated Security = True";
 				SqlConnection con = new SqlConnection(connectionString);
 				con.Open();
                 string imagePath = SaveImage(ImageFile);
